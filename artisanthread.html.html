@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Tread - Handmade Crochet Items</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #f8e5d6;
+            --secondary: #ddb892;
+            --accent: #7f5539;
+            --dark: #432818;
+            --light: #fff9f0;
+            --text: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            color: white;
+            margin-left: 15px;
+            font-size: 18px;
+            position: relative;
+        }
+        
+        .header-icons a span {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            margin: 20px 0;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--secondary);
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        
+        .search-bar button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 40px 0;
+            min-height: calc(100vh - 150px);
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Home Page */
+        .hero {
+            background-image: linear-gradient(rgba(185, 117, 38, 0.7), rgba(46, 23, 2, 0.7)),url(file:///C:/Users/mr.x/Documents/DCIM/New%20folder/at/P/1.jpeg);
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent);
+        }
+        
+        .featured-products h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            color: var(--dark);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Product Card */
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .product-info p {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .product-actions button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .product-actions button:hover {
+            background-color: var(--accent);
+        }
+        
+        .favorite-btn {
+            background-color: transparent !important;
+            color: var(--text) !important;
+            border: 1px solid var(--text) !important;
+        }
+        
+        .favorite-btn.active {
+            color: red !important;
+            border-color: red !important;
+        }
+        
+        /* Shop Page */
+        .shop-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .filter-options select {
+            padding: 8px 15px;
+            border-radius: 4px;
+            border: 1px solid var(--secondary);
+            background-color: white;
+        }
+        
+        /* About Page */
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        /* Custom Orders Page */
+        .custom-order-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--secondary);
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Contact Page */
+        .contact-container {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links  {
+            text-align: center;
+            margin: 20px 0;
+         }
+
+         .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+         }
+
+         .social icons a {
+            color: #333;
+            font-size: 24px;
+            transition: color 0.3s;
+         }
+
+         .social-icons a:hover {
+            color: #E1306C;
+         }
+        
+         .social-icons a:nth-child(2):hover {
+            color: #000000;
+         }
+
+         .social-icons a:nth-child(3):hover {
+            color: #0088CC;
+        }
+
+        .social-icons a:nth-child(4):hover {
+            color: #FF0000;
+        }
+        .contact-form {
+            flex: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+        
+        /* Modal (Cart) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-header {
+            padding: 15px 20px;
+            background-color: var(--dark);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            font-size: 20px;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+        }
+        
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        .quantity-control button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .quantity-control button:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .quantity-control button:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .quantity-control input {
+            width: 40px;
+            height: 25px;
+            text-align: center;
+            border: 1px solid var(--secondary);
+            border-left: none;
+            border-right: none;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .cart-summary {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav ul li {
+                margin-left: 10px;
+            }
+            
+            .hero {
+                height: 300px;
+            }
+            
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .product-actions button {
+                width: 100%;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .cart-item-img {
+                margin-bottom: 10px;
+            }
+            
+            .cart-item-actions {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo" onclick=><img src="C:\Users\mr.x\Downloads\logo.png" alt="logo">
+
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#" onclick="showPage('shop')">Shop</a></li>
+                    <li><a href="#" onclick="showPage('about')">About</a></li>
+                    <li><a href="#" onclick="showPage('custom')">Custom Orders</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-icons">
+                <a href="#" onclick="toggleSearch()"><i>🔍</i></a>
+                <a href="#" onclick="toggleFavorites()"><i>❤️</i><span id="fav-count">0</span></a>
+                <a href="#" onclick="toggleCart()"><i>🛒</i><span id="cart-count">0</span></a>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="search-bar" id="search-bar" style="display: none;">
+                <input type="text" placeholder="Search for crochet items..." id="search-input">
+                <button onclick="searchProducts()">Search</button>
+            </div>
+        </div>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Home Page -->
+        <div class="page active" id="home">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Artisan Thread</h1>
+                    <p>Beautiful, unique crochet items made with love and tradition</p>
+                    <a href="#" class="btn" onclick="showPage('shop')">Shop Now</a>
+                </div>
+            </section>
+            
+            <section class="featured-products">
+                <div class="container">
+                    <h2>Featured Products</h2>
+                    <div class="products-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\P\b.jpeg" alt="Crochet Bag">
+                            </div>
+                            <div class="product-info">
+                                <h3> Crochet Bag</h3>
+                                <p>1200 ETB</p>
+                                <div class="product-actions">
+                                    <button class="favorite-btn" onclick="toggleFavorite(1)">❤️</button>
+                                    <button onclick="addToCart(1)">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 2 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\P\t.jpeg" alt="Crochet Blanket">
+                            </div>
+                            <div class="product-info">
+                                <h3>Traditional Blanket</h3>
+                                <p>4500 ETB</p>
+                                <div class="product-actions">
+                                    <button class="favorite-btn" onclick="toggleFavorite(2)">❤️</button>
+                                    <button onclick="addToCart(2)">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product 3 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\4.jpg" alt="Crochet Hat">
+                            </div>
+                            <div class="product-info">
+                                <h3>Colorful Crochet Hat</h3>
+                                <p>350 ETB</p>
+                                <div class="product-actions">
+                                    <button class="favorite-btn" onclick="toggleFavorite(3)">❤️</button>
+                                    <button onclick="addToCart(3)">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Product 4 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\7.jpg" alt="Crochet Blanket">
+                            </div>
+                            <div class="product-info">
+                                <h3>Baby boote</h3>
+                                <p>600 ETB</p>
+                                <div class="product-actions">
+                                    <button class="favorite-btn" onclick="toggleFavorite(2)">❤️</button>
+                                    <button onclick="addToCart(2)">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Shop Page -->
+        <div class="page" id="shop">
+            <div class="container">
+                <div class="shop-header">
+                    <h2>All Crochet Items</h2>
+                    <div class="filter-options">
+                        <select id="category-filter">
+                            <option value="all">All Categories</option>
+                            <option value="bags">Bags</option>
+                            <option value="blankets">Blankets</option>
+                            <option value="hats">Hats</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="accessories">Accessories</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="products-grid">
+                     <!-- Product 1 -->
+                    <div class="product-card" data-category="bags">
+                        <div class="product-img">
+                            <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\P\b.jpeg" alt="Crochet Bag">
+                        </div>
+                        <div class="product-info">
+                            <h3>Ethiopian Birr Crochet Bag</h3>
+                            <p>1200 ETB</p>
+                            <div class="product-actions">
+                                <button class="favorite-btn" onclick="toggleFavorite(1)">❤️</button>
+                                <button onclick="addToCart(1)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card" data-category="blankets">
+                        <div class="product-img">
+                            <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\P\t.jpeg" alt= "traditional blanket">
+                        </div>
+                        <div class="product-info">
+                            <h3>Traditional Blanket</h3>
+                            <p>1,200 ETB</p>
+                            <div class="product-actions">
+                                <button class="favorite-btn" onclick="toggleFavorite(2)">❤️</button>
+                                <button onclick="addToCart(2)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card" data-category="hats">
+                        <div class="product-img">
+                       <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\4.jpg" alt="Crochet Hat">     
+                        </div>
+                        <div class="product-info">
+                            <h3>Colorful Crochet Hat</h3>
+                            <p>350 ETB</p>
+                            <div class="product-actions">
+                                <button class="favorite-btn" onclick="toggleFavorite(3)">❤️</button>
+                                <button onclick="addToCart(3)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card" data-category="clothing">
+                        <div class="product-img">
+                            <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\P\2.jpeg" alt="Crochet Top">
+                        </div>
+                        <div class="product-info">
+                            <h3>Ethnic Crochet Top</h3>
+                            <p>1000 ETB</p>
+                            <div class="product-actions">
+                                <button class="favorite-btn" onclick="toggleFavorite(4)">❤️</button>
+                                <button onclick="addToCart(4)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 5 -->
+                    <div class="product-card" data-category="accessories">
+                        <div class="product-img">
+                            <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\P\3.jpeg" alt="Crochet Scarf">
+                        </div>
+                        <div class="product-info">
+                            <h3>Warm Crochet Scarf</h3>
+                            <p>850 ETB</p>
+                            <div class="product-actions">
+                                <button class="favorite-btn" onclick="toggleFavorite(5)">❤️</button>
+                                <button onclick="addToCart(5)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                   <!-- Product 6 -->
+                    <div class="product-card" data-category="bags">
+                        <div class="product-img">
+                            <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\P\4.jpeg" alt="Crochet Purse">
+                        </div>
+                        <div class="product-info">
+                            <h3>Small Crochet Purse</h3>
+                            <p>300 ETB</p>
+                            <div class="product-actions">
+                                <button class="favorite-btn" onclick="toggleFavorite(6)">❤️</button>
+                                <button onclick="addToCart(6)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Product 7 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\7.jpg" alt="Crochet Blanket">
+                            </div>
+                            <div class="product-info">
+                                <h3>Baby boote</h3>
+                                <p>600 ETB</p>
+                                <div class="product-actions">
+                                    <button class="favorite-btn" onclick="toggleFavorite(2)">❤️</button>
+                                    <button onclick="addToCart(2)">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 8 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\8.jpg" alt="Crochet Blanket">
+                            </div>
+                            <div class="product-info">
+                                <h3>Storage Basket</h3>
+                                <p>1500 ETB</p>
+                                <div class="product-actions">
+                                    <button class="favorite-btn" onclick="toggleFavorite(2)">❤️</button>
+                                    <button onclick="addToCart(2)">Add to Cart</button>
+                             </div>
+                        </div>
+                    </div>
+
+                     <!-- Product 9 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\1.jpg" alt="Crochet Blanket">
+                            </div>
+                            <div class="product-info">
+                                <h3>Sunflower sweater</h3>
+                                <p>2000 ETB</p>
+                                <div class="product-actions">
+                                    <button class="favorite-btn" onclick="toggleFavorite(2)">❤️</button>
+                                    <button onclick="addToCart(2)">Add to Cart</button>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 10 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\3.jpg" alt="Crochet Blanket">
+                            </div>
+                            <div class="product-info">
+                                <h3>Infinity Scarf</h3>
+                                <p>350 ETB</p>
+                                <div class="product-actions">
+                                    <button class="favorite-btn" onclick="toggleFavorite(2)">❤️</button>
+                                    <button onclick="addToCart(2)">Add to Cart</button>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 11 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\2.jpg" alt="Crochet Blanket">
+                            </div>
+                            <div class="product-info">
+                                <h3>Boho Market Bag</h3>
+                                <p>2000 ETB</p>
+                                <div class="product-actions">
+                                    <button class="favorite-btn" onclick="toggleFavorite(2)">❤️</button>
+                                    <button onclick="addToCart(2)">Add to Cart</button>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 12 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\5.jpg" alt="Crochet Blanket">
+                            </div>
+                            <div class="product-info">
+                                <h3>Cozy Chunky Blanket</h3>
+                                <p>3000 ETB</p>
+                                <div class="product-actions">
+                                    <button class="favorite-btn" onclick="toggleFavorite(2)">❤️</button>
+                                    <button onclick="addToCart(2)">Add to Cart</button>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- About Page -->
+        <div class="page" id="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-img">
+                        <img src="C:\Users\mr.x\Documents\DCIM\New folder\at\M.jpeg" alt="About Artisan Thread">
+                    </div>
+                    <div class="about-text">
+                        <h2>My Story</h2>
+                        <p>Welcome to Artisan Thread! My name is Mihiret, and I've been passionate about crochet since I was a little girl learning from my mother in Addis Ababa.</p>
+                        <p>What started as a hobby has grown into a small business where I create beautiful, handmade crochet items using traditional Ethiopian techniques and patterns. Each piece is made with love and attention to detail.</p>
+                        <p>I specialize in working with crochet cloth, incorporating our rich cultural heritage into every stitch. My mission is to share the beauty of Ethiopian craftsmanship with the world while supporting local artisans and sustainable practices.</p>
+                        <p>When you purchase from Artisian, you're not just getting a unique handmade item - you're supporting a small business and helping to preserve traditional Ethiopian crafts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Custom Orders Page -->
+        <div class="page" id="custom">
+            <div class="container">
+                <h2>Custom Order Request</h2>
+                <p>Have something special in mind? Fill out the form below to request a custom crochet item. I'll get back to you within 2 business days with a quote and timeline.</p>
+                
+                <form class="custom-order-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="item-type">Type of Item</label>
+                        <select id="item-type" required>
+                            <option value="">Select an item type</option>
+                            <option value="bag">Bag/Purse</option>
+                            <option value="blanket">Blanket</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="hat">Hat</option>
+                            <option value="scarf">Scarf</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="size">Size/Dimensions</label>
+                        <input type="text" id="size" placeholder="e.g., 50cm x 60cm">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="colors">Preferred Colors</label>
+                        <input type="text" id="colors" placeholder="e.g., Red, yellow, green">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="deadline">Desired Completion Date</label>
+                        <input type="date" id="deadline">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="details">Additional Details</label>
+                        <textarea id="details" placeholder="Describe your custom item in detail..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Submit Request</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Contact Page -->
+        <div class="page" id="contact">
+            <div class="container">
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h2>Get In Touch</h2>
+                        <p>Have questions about our products or custom orders? We'd love to hear from you!</p>
+                        
+                        <p><strong>Email:</strong> Artisan Thread@gmail.com</p>
+                        <p><strong>Phone:</strong> +251 90 265 0768</p>
+                        <p><strong>Address:</strong> Bole Road, Addis Ababa, Ethiopia</p>
+                        
+                        <div class="social-links">
+                           <h3>Follow Us</h3>
+                           <div class="social-icons">
+                               <!-- Instagram-->
+                              <a href="https://www.instagram.com/artisan.thread1" target="_blank">
+                                <i class="fab fa-instagram"></i> <!-- Font Awsome icon -->
+                              </a>
+
+                              <!--TikTok--> 
+                               <a href="https://www.tiktok.com/@artisanthread" target="_blank"></i>
+                               <i class="fab fa-tiktok"></i> <!-- Font Awsome icon -->
+                            </a>
+
+
+                              <!-- Telegram-->
+                               <a href="https://t.me/artisanthread" target="_blank"></i>
+                                <i class="fab fa-telegram"></i> <!-- Font Awsome icon -->
+                            </a>
+                            
+                            <!-- YouTube-->
+                              <a href="https://www.youtube.com/@ArtisanThread" target="_blank"></i>
+                              <i class="fab fa-youtube"></i> <!-- Font Awsome icon -->
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h2>Send Us a Message</h2>
+                        <form>
+                            <div class="form-group">
+                                <label for="contact-name">Name</label>
+                                <input type="text" id="contact-name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contact-email">Email</label>
+                                <input type="email" id="contact-email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contact-subject">Subject</label>
+                                <input type="text" id="contact-subject">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contact-message">Message</label>
+                                <textarea id="contact-message" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('shop')">Shop</a></li>
+                        <li><a href="#" onclick="showPage('about')">About</a></li>
+                        <li><a href="#" onclick="showPage('custom')">Custom Orders</a></li>
+                        <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                        <li><a href="#">WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Artisan Tread. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Shopping Cart</h2>
+                <button class="close-modal" onclick="toggleCart()">×</button>
+            </div>
+            <div class="modal-body" id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+                <p>Your cart is empty</p>
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total">0 ETB</span>
+                </div>
+                <button class="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Favorites Modal -->
+    <div class="modal" id="favorites-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Favorites</h2>
+                <button class="close-modal" onclick="toggleFavorites()">×</button>
+            </div>
+            <div class="modal-body" id="favorites-items">
+                <!-- Favorite items will be added here dynamically -->
+                <p>You haven't added any items to favorites yet</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Product data
+        const products = {
+            1: { id: 1, name: "Ethiopian Birr Crochet Bag", price: 450, image: "https://images.unsplash.com/photo-1618354691373-d8514fecaf3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" },
+            2: { id: 2, name: "Traditional Blanket", price: 1200, image: "https://images.unsplash.com/photo-1598702925568-0cd6d9110954?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" },
+            3: { id: 3, name: "Colorful Crochet Hat", price: 350, image: "https://images.unsplash.com/photo-1610220941079-23527bdf2f0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" },
+            4: { id: 4, name: "Ethnic Crochet Top", price: 600, image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" },
+            5: { id: 5, name: "Warm Crochet Scarf", price: 400, image: "https://images.unsplash.com/photo-1617137968404-6f6b1b3b3b3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" },
+            6: { id: 6, name: "Small Crochet Purse", price: 300, image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" }
+        };
+        
+        // Cart and favorites data
+        let cart = {};
+        let favorites = [];
+        
+        // Page navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // Close any open modals
+            document.getElementById('cart-modal').style.display = 'none';
+            document.getElementById('favorites-modal').style.display = 'none';
+            document.getElementById('search-bar').style.display = 'none';
+        }
+        
+        // Toggle search bar
+        function toggleSearch() {
+            event.preventDefault();
+            const searchBar = document.getElementById('search-bar');
+            searchBar.style.display = searchBar.style.display === 'none' ? 'flex' : 'none';
+        }
+        
+        // Search products
+        function searchProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            showPage('shop');
+            
+            document.querySelectorAll('.product-card').forEach(card => {
+                const productName = card.querySelector('h3').textContent.toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Filter products by category
+        document.getElementById('category-filter').addEventListener('change', function() {
+            const category = this.value;
+            
+            document.querySelectorAll('.product-card').forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Toggle favorites
+        function toggleFavorite(productId) {
+            event.preventDefault();
+            const btn = event.target.closest('button');
+            
+            if (favorites.includes(productId)) {
+                favorites = favorites.filter(id => id !== productId);
+                btn.classList.remove('active');
+            } else {
+                favorites.push(productId);
+                btn.classList.add('active');
+            }
+            
+            updateFavoritesCount();
+        }
+        
+        // Update favorites count
+        function updateFavoritesCount() {
+            document.getElementById('fav-count').textContent = favorites.length;
+        }
+        
+        // Toggle favorites modal
+        function toggleFavorites() {
+            event.preventDefault();
+            const modal = document.getElementById('favorites-modal');
+            
+            if (modal.style.display === 'flex') {
+                modal.style.display = 'none';
+                return;
+            }
+            
+            const favoritesContainer = document.getElementById('favorites-items');
+            favoritesContainer.innerHTML = '';
+            
+            if (favorites.length === 0) {
+                favoritesContainer.innerHTML = '<p>You haven\'t added any items to favorites yet</p>';
+            } else {
+                favorites.forEach(productId => {
+                    const product = products[productId];
+                    const item = document.createElement('div');
+                    item.className = 'cart-item';
+                    item.innerHTML = `
+                        <div class="cart-item-img">
+                            <img src="${product.image}" alt="${product.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${product.name}</div>
+                            <div class="cart-item-price">${product.price} ETB</div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="remove-item" onclick="removeFavorite(${productId})">×</button>
+                        </div>
+                    `;
+                    favoritesContainer.appendChild(item);
+                });
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        // Remove from favorites
+        function removeFavorite(productId) {
+            favorites = favorites.filter(id => id !== productId);
+            updateFavoritesCount();
+            toggleFavorites();
+            toggleFavorites();
+            
+            // Update favorite button state
+            document.querySelectorAll(`.favorite-btn[onclick="toggleFavorite(${productId})"]`).forEach(btn => {
+                btn.classList.remove('active');
+            });
+        }
+        
+        // Add to cart
+        function addToCart(productId) {
+            if (cart[productId]) {
+                cart[productId].quantity += 1;
+            } else {
+                cart[productId] = {
+                    product: products[productId],
+                    quantity: 1
+                };
+            }
+            
+            updateCartCount();
+        }
+        
+        // Update cart count
+        function updateCartCount() {
+            let total = 0;
+            for (const item in cart) {
+                total += cart[item].quantity;
+            }
+            document.getElementById('cart-count').textContent = total;
+        }
+        
+        // Toggle cart modal
+        function toggleCart() {
+            event.preventDefault();
+            const modal = document.getElementById('cart-modal');
+            
+            if (modal.style.display === 'flex') {
+                modal.style.display = 'none';
+                return;
+            }
+            
+            const cartContainer = document.getElementById('cart-items');
+            cartContainer.innerHTML = '';
+            
+            if (Object.keys(cart).length === 0) {
+                cartContainer.innerHTML = '<p>Your cart is empty</p>';
+                document.getElementById('cart-total').textContent = '0 ETB';
+            } else {
+                let total = 0;
+                
+                for (const productId in cart) {
+                    const item = cart[productId];
+                    total += item.product.price * item.quantity;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div class="cart-item-img">
+                            <img src="${item.product.image}" alt="${item.product.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.product.name}</div>
+                            <div class="cart-item-price">${item.product.price} ETB</div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button onclick="updateQuantity(${productId}, -1)">-</button>
+                                <input type="text" value="${item.quantity}" readonly>
+                                <button onclick="updateQuantity(${productId}, 1)">+</button>
+                            </div>
+                            <button class="remove-item" onclick="removeFromCart(${productId})">×</button>
+                        </div>
+                    `;
+                    cartContainer.appendChild(cartItem);
+                }
+                
+                document.getElementById('cart-total').textContent = `${total} ETB`;
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        // Update item quantity
+        function updateQuantity(productId, change) {
+            const newQuantity = cart[productId].quantity + change;
+            
+            if (newQuantity < 1) {
+                removeFromCart(productId);
+            } else {
+                cart[productId].quantity = newQuantity;
+            }
+            
+            updateCartCount();
+            toggleCart();
+            toggleCart();
+        }
+        
+        // Remove from cart
+        function removeFromCart(productId) {
+            delete cart[productId];
+            updateCartCount();
+            toggleCart();
+            toggleCart();
+        }
+        
+        // Form submission handlers
+        document.querySelector('.custom-order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your custom order request! We will contact you within 2 business days.');
+            this.reset();
+        });
+        
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+        
+        // Initialize
+        updateCartCount();
+        updateFavoritesCount();
+    </script>
+</body>
+</html>
